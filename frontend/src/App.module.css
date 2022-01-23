@@ -1,0 +1,97 @@
+.App {
+  font-family: 'Zilla Slab', serif;
+  font-size: 1.4em;
+  block-size: auto;
+}
+
+.Notifs {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border: 3px solid salmon;
+}
+
+.CenterAlign{
+  text-align: center;
+}
+
+.TopBar {
+  padding-bottom: 0.8%;
+  border-bottom: 2px solid black;
+}
+
+.SmallerImage {
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  height: 70vh;
+}
+
+.MintTitle {
+  margin-top: 2%;
+  text-align: center;
+}
+
+.CenterButton {
+  margin: 0;
+  position: absolute;
+  margin-top: 4%;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.CenterButtonSale{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.CollectionImage {
+  margin: 2%;
+  border: 1px solid grey;
+  width: 21%;
+}
+
+.SpaceOnTop {
+  margin-top: 7%;
+}
+
+.IndividualImages {
+  display: inline;
+}
+
+.PlainText {
+  color: darkslategrey !important;
+  text-decoration: none;
+}
+
+.BottomSpace {
+  margin-bottom: 50px;
+}
+
+.Test {
+  border: 10px solid red;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.RightAlign {
+  float: right;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
