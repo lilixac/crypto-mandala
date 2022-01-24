@@ -70,7 +70,6 @@ const IndividualItem = ({ id, addr }) => {
             NotificationManager.error("Error buying...")
         } else {
             NotificationManager.success("Buy complete.", txResult.txHash)
-            window.location.reload()
         }
     }
 
