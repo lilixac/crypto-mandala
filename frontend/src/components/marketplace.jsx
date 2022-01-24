@@ -47,7 +47,7 @@ const IndividualItem = ({ id, addr }) => {
             let response3 = await readOnly('ownerOf', { "_tokenId": JSON.stringify(id) })
             setOwner(response3)
             setPrice(parseInt(response2, 16))
-            let ipfsResponse = await fetch(`https://ipfs.io/ipfs/${response}/1.png`);
+            let ipfsResponse = await fetch(`https://ipfs.io/ipfs/${response}`);
             try {
                 const responseJSON = await Promise.resolve(ipfsResponse);
                 setURI(responseJSON.url)

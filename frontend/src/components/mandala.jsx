@@ -14,7 +14,7 @@ const Mandala = ({addr}) => {
             let response = await readOnly('getTokenURI', { "_tokenId": id })
             let response2 = await readOnly('ownerOf', { "_tokenId": id })
             setOwner(response2)
-            let ipfsResponse = await fetch(`https://gateway.pinata.cloud/ipfs/${response}/mandala_${id}.png`);
+            let ipfsResponse = await fetch(`https://gateway.pinata.cloud/ipfs/${response}`);
             try {
                 const responseJSON = await Promise.resolve(ipfsResponse);
                 setURI(responseJSON.url)
