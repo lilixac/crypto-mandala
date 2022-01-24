@@ -35,6 +35,7 @@ const Collection = ({ id }) => {
     useEffect(() => {
         async function fetchMyAPI() {
             let response = await readOnly('getTokenURI', { "_tokenId": JSON.stringify(id) })
+            console.log(response);
             let ipfsResponse = await fetch(`https://gateway.pinata.cloud/ipfs/${response}`);
             try {
                 const responseJSON = await Promise.resolve(ipfsResponse);
