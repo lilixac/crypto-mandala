@@ -68,6 +68,7 @@ const Wallet = ({ id, addr, disable }) => {
         if (txResult.status === 0) {
             NotificationManager.error("Error listing on sale...")
         } else {
+            setIsOnSale(true)
             NotificationManager.success("List on sale complete.", txResult.txHash)
         }
     }
@@ -82,6 +83,7 @@ const Wallet = ({ id, addr, disable }) => {
         if (txResult.status === 0) {
             NotificationManager.error("Error removing from on sale...")
         } else {
+            setIsOnSale(false)
             NotificationManager.success("Remove from sale complete.", txResult.txHash)
         }
     }
