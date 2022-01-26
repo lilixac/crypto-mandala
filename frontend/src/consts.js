@@ -2,7 +2,7 @@ const CONSTS = {
   production: true,
   sejongRpcUrl: "https://sejong.net.solidwallet.io/api/v3",
   sejongDebugRpcUrl: "https://sejong.net.solidwallet.io/api/v3d",
-  crypto_mandala: 'cx89391543311ac1a7a508e4fa7933894ba774146b',
+  crypto_mandala: 'cxf42ee184736e4e70d1594bee09b312d4480d1cec',
   NID: 83,
 };
 
