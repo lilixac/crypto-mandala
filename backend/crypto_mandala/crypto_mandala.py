@@ -3,6 +3,10 @@ from iconservice import *
 TAG = 'Crypto Mandala'
 EOA_ZERO = Address.from_string('hx' + '0' * 40)
 
+class NFTInitialize(TypedDict):
+    _tokenId: int
+    _tokenURI: str
+
 class TokenStandard(ABC):
     @abstractmethod
     def name(self) -> str:
@@ -139,14 +143,20 @@ class CryptoMandala(IconScoreBase):
         return 0
     
     @external(readonly=True)
-    def temp(self, _owner: Address) -> str:
-        return self._user_tokens[_owner]
-    
-    @external(readonly=True)
     def getTokensByAddress(self, _owner: Address) -> list:
         tokensIds = self._user_tokens[_owner].split(",")
         tokensIds.pop()
         return [i for i in tokensIds]
+
+    @external
+    def initialize(self, _tokenURIs: List[NFTInitialize]) -> None:
+        if self.msg.sender != self.owner:
+            revert("Only owner can call this method")
+        for nft in _tokenURIs:
+            _id = nft.get('_tokenId')
+            if _id > self.supplyCap():
+                revert("Supply cap exceed")
+            self._token_URIs[nft.get('_tokenId')] = nft.get('_tokenURI')
     
     @external
     def approve(self, _to: Address, _tokenId: int):
@@ -227,7 +237,7 @@ class CryptoMandala(IconScoreBase):
         
 
     @external
-    def mint(self, _to: Address, _tokenURI: str = None) -> None:
+    def mint(self, _to: Address) -> None:
         if _to == EOA_ZERO:
             revert("Cannot transfer to zero address")
         _tokenId = self.totalSupply() + 1
@@ -247,10 +257,6 @@ class CryptoMandala(IconScoreBase):
         self._sale_info[_tokenId]["PRICE"] = 0
 
         self._user_tokens[_to] = self._user_tokens[_to]+ str(f"{_tokenId},")
-        # ideally use IPFS hash for tokenURI
-        if _tokenURI is None:
-            _tokenURI = ""
-        self._token_URIs[_tokenId] = _tokenURI
         self.Transfer(EOA_ZERO, _to, _tokenId)
 
     def _transfer(self, _from: Address, _to: Address, _tokenId: int) -> None:
