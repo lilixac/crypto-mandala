@@ -183,7 +183,7 @@ class CryptoMandala(IconScoreBase):
         if not self._token_exists(_tokenId):
             revert("Trying to set URI for non existent token")
 
-        if self.msg.sender != self.ownerOf(_tokenId):
+        if self.msg.sender != self.owner:
             revert("Changing URI of token that is not own")
 
         if _tokenURI is None:
@@ -237,6 +237,7 @@ class CryptoMandala(IconScoreBase):
         
 
     @external
+    @payable
     def mint(self, _to: Address) -> None:
         if _to == EOA_ZERO:
             revert("Cannot transfer to zero address")
@@ -248,6 +249,11 @@ class CryptoMandala(IconScoreBase):
         # check for token should not exist
         if self._token_exists(_tokenId):
             revert("Token is already minted")
+
+        if self.msg.value != 40 * 10 ** 18:
+            revert("Cost of mint is 40 ICX. Please sent correct amount.")
+
+        self.icx.transfer(self.address, self.msg.value)
 
         self._balances[_to] += 1
         self._owners[_tokenId] = _to
