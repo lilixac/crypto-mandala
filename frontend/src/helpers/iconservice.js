@@ -55,6 +55,10 @@ export async function sendTx(method, params, value) {
 	const pk = localStorage.getItem("pk")
 	const wallet = IconWallet.loadPrivateKey(pk)
 
+	if (method === "mint") {
+		value = CONSTS.mint_cost;
+	}
+
 	const txObj = callTxnBuilder
 		.nid(CONSTS.NID)
 		.from(wallet.getAddress())

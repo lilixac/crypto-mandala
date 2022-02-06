@@ -10,7 +10,7 @@ const Mint = ({addr}) => {
             _to: addr
         }
         NotificationManager.info("Sending mint request...")
-        var txResult = await sendTx("mint", params, 0)
+        var txResult = await sendTx("mint", params, '40000000000000000000');
         if (txResult.status === 0) {
             NotificationManager.error("Error minting...")
         } else {
@@ -21,6 +21,7 @@ const Mint = ({addr}) => {
     return (
         <Container>
             <h1 className={styles.MintTitle}> Create New </h1>
+            <p className={styles.CenterAlign}> Minting costs 40 ICX. </p>
             <img className={styles.SmallerImage} alt="random" src="https://gateway.pinata.cloud/ipfs/QmQ3obmFkuUNKSLGs3ZhPJgn5493zf521YwgjoDmpxuK5V" />
             <InputGroup className="mb-3">
                 <Button className={styles.CenterButton} size="lg" variant="outline-dark" onClick={mintNFT}>Generate</Button>
