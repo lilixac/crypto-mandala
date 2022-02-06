@@ -253,8 +253,6 @@ class CryptoMandala(IconScoreBase):
         if self.msg.value != 40 * 10 ** 18:
             revert("Cost of mint is 40 ICX. Please sent correct amount.")
 
-        self.icx.transfer(self.address, self.msg.value)
-
         self._balances[_to] += 1
         self._owners[_tokenId] = _to
         self._total_supply.set(self.totalSupply()+1)
