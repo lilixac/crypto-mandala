@@ -22,7 +22,7 @@ const Mint = ({addr}) => {
         <Container>
             <h1 className={styles.MintTitle}> Create New </h1>
             <p className={styles.CenterAlign}> Minting costs 40 ICX. </p>
-            <img className={styles.SmallerImage} alt="random" src="https://gateway.pinata.cloud/ipfs/QmQ3obmFkuUNKSLGs3ZhPJgn5493zf521YwgjoDmpxuK5V" />
+            <img className={styles.SmallerImage} alt="random" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Mandel_zoom_00_mandelbrot_set.jpg" />
             <InputGroup className="mb-3">
                 <Button className={styles.CenterButton} size="lg" variant="outline-dark" onClick={mintNFT}>Generate</Button>
             </InputGroup>
