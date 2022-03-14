@@ -10,4 +10,4 @@ Learn more about Julia fractals [here](https://en.wikipedia.org/wiki/Julia_set )
 
 All 100 images have not been uploaded to IPFS. Only few of them have been added.
 
-The images were uploaded to free plan of pinata cloud. So, it might take really long time to load the images or the images might not load because of `too many requests`, which is because of the free plan. This error can be seen on the console.
+The images were uploaded to free plan of fleek.
