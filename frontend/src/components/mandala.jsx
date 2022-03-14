@@ -1,4 +1,4 @@
-import { readOnly } from "../helpers/iconservice";
+import { readOnly, getLink } from "../helpers/iconservice";
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom'
 import styles from '../App.module.css'
@@ -14,14 +14,8 @@ const Mandala = ({addr}) => {
             let response = await readOnly('getTokenURI', { "_tokenId": id })
             let response2 = await readOnly('ownerOf', { "_tokenId": id })
             setOwner(response2)
-            let ipfsResponse = await fetch(`https://gateway.pinata.cloud/ipfs/${response}`);
-            try {
-                const responseJSON = await Promise.resolve(ipfsResponse);
-                setURI(responseJSON.url)
-            } catch (err) {
-                console.log(err);
-                throw err;
-            }
+            let ipfsResponse = await getLink(response)
+            setURI(ipfsResponse)
         }
         fetchMyAPI()
     }, [id])

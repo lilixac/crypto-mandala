@@ -1,4 +1,4 @@
-import { readOnly, sendTx } from "../helpers/iconservice";
+import { readOnly, sendTx, getLink } from "../helpers/iconservice";
 import { Card, Container, ListGroup, Col, Row, Button, Modal, Badge } from 'react-bootstrap';
 import { useState, useEffect } from "react";
 import { NotificationManager } from 'react-notifications'
@@ -47,14 +47,8 @@ const IndividualItem = ({ id, addr }) => {
             let response3 = await readOnly('ownerOf', { "_tokenId": JSON.stringify(id) })
             setOwner(response3)
             setPrice(parseInt(response2, 16))
-            let ipfsResponse = await fetch(`https://ipfs.io/ipfs/${response}`);
-            try {
-                const responseJSON = await Promise.resolve(ipfsResponse);
-                setURI(responseJSON.url)
-            } catch (err) {
-                console.log(err);
-                throw err;
-            }
+            let ipfsResponse = await getLink(response)
+            setURI(ipfsResponse)
         }
         fetchMyAPI()
     }, [id])

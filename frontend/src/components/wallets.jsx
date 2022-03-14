@@ -1,4 +1,4 @@
-import { readOnly, sendTx } from "../helpers/iconservice"
+import { readOnly, sendTx, getLink } from "../helpers/iconservice"
 import { useState, useEffect } from 'react'
 import { NotificationManager } from 'react-notifications'
 import { useParams } from 'react-router-dom'
@@ -45,14 +45,8 @@ const Wallet = ({ id, addr, disable }) => {
             let response = await readOnly('getTokenURI', { "_tokenId": JSON.stringify(id) })
             let response2 = await readOnly('isOnSale', { "_tokenId": JSON.stringify(id) })
             setIsOnSale(response2)
-            let ipfsResponse = await fetch(`https://gateway.pinata.cloud/ipfs/${response}`);
-            try {
-                const responseJSON = await Promise.resolve(ipfsResponse);
-                setURI(responseJSON.url)
-            } catch (err) {
-                console.log(err);
-                throw err;
-            }
+            let ipfsResponse = await getLink(response)
+            setURI(ipfsResponse)
         }
         fetchMyAPI()
     }, [id])

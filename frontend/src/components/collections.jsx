@@ -1,4 +1,4 @@
-import { readOnly } from "../helpers/iconservice";
+import { readOnly, getLink } from "../helpers/iconservice";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom"
 import styles from '../App.module.css'
@@ -35,15 +35,8 @@ const Collection = ({ id }) => {
     useEffect(() => {
         async function fetchMyAPI() {
             let response = await readOnly('getTokenURI', { "_tokenId": JSON.stringify(id) })
-            console.log(response);
-            let ipfsResponse = await fetch(`https://gateway.pinata.cloud/ipfs/${response}`);
-            try {
-                const responseJSON = await Promise.resolve(ipfsResponse);
-                setURI(responseJSON.url)
-            } catch (err) {
-                console.log(err);
-                throw err;
-            }
+            let ipfsResponse = await getLink(response)
+            setURI(ipfsResponse)
         }
         fetchMyAPI()
     }, [id])

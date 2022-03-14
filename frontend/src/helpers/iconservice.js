@@ -35,6 +35,10 @@ export async function readOnly(method, params) {
 	}
 }
 
+export async function getLink(ipfsHash) {
+	return `https://ipfs.fleek.co/ipfs/${ipfsHash}`
+}
+
 export async function setAddrToLocalStorage(pk) {
 	const { IconWallet } = IconService
 	const wallet = IconWallet.loadPrivateKey(pk)
@@ -81,9 +85,8 @@ export async function sendTx(method, params, value) {
 	
 	try {
 		await timeout(instance)
-		console.log(txHash)
+		console.log("The txn hash is :> ",txHash)
 		const txnResult =  await iconService.getTransactionResult(txHash).execute()
-		console.log(txnResult)
 		return txnResult
 
 	} catch (error) {
