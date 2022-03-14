@@ -180,9 +180,6 @@ class CryptoMandala(IconScoreBase):
     
     @external
     def setTokenURI(self, _tokenId: int, _tokenURI: str = None) -> None:
-        if not self._token_exists(_tokenId):
-            revert("Trying to set URI for non existent token")
-
         if self.msg.sender != self.owner:
             revert("Changing URI of token that is not own")
 
