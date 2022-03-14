@@ -177,15 +177,6 @@ class CryptoMandala(IconScoreBase):
         if not self._isApprovedOrOwner(self.msg.sender, _tokenId):
             revert("Not owner or approved")
         self._transfer(_from, _to, _tokenId)
-    
-    @external
-    def setTokenURI(self, _tokenId: int, _tokenURI: str = None) -> None:
-        if self.msg.sender != self.owner:
-            revert("Changing URI of token that is not own")
-
-        if _tokenURI is None:
-            _tokenURI = ""
-        self._token_URIs[_tokenId] = _tokenURI
 
     @external
     def listOnSale(self, _tokenId: int, _price: int) -> None:
